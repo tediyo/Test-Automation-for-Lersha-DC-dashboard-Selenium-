@@ -43,11 +43,18 @@ public class farmers {
             // Wait and locate the "Farmers" link
            WebElement farmersLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@href, '/dashboard/farmer')]")));
            farmersLink.click();
+
+           // Wait until the button with both the class and the SVG path is clickable
+           
+           
+
             Thread.sleep(3000);
 
+            // WebElement dropdownButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class, 'lucide-chevron-down')]")));
+            // dropdownButton.click();
             // Locate the Start Date input field
             WebElement startDateInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("startDate")));
-            startDateInput.sendKeys("03-13-2025");  // Change the date as needed
+            startDateInput.sendKeys("03-14-2025");  // Change the date as needed
 
             // Locate the End Date input field
             WebElement endDateInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("endDate")));
