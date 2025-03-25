@@ -82,21 +82,21 @@ public class farmers {
                 }
 
                
-                
+
 
                 // List of expected names to check
-String[] expectedNames = {"Amandf Fbaddba Duddcu", "Zeleke Feleke Deleke", "Alemu Gam BA","Utst Utst Utst"};
+              String[] expectedNames = {"Amandf Fbaddba Duddcu", "Zeleke Feleke Deleke", "Alemu Gam BA","Utst Utst Utst"};
 
-for (WebElement row : rows) {
-    String rowText = row.getText();
+                   for (WebElement row : rows) {
+                     String rowText = row.getText();
     
-    boolean found = false;
-    for (String name : expectedNames) {
-        if (rowText.contains(name)) {
-            found = true;
-            break; // Exit loop if any of the names match
-        }
-    }
+                       boolean found = false;
+                           for (String name : expectedNames) {
+                            if (rowText.contains(name)) {
+                               found = true;
+                                  break; // Exit loop if any of the names match
+                        }
+               }
 
     if (!found) {
         System.out.println(RED + "Unexpected row data: " + row.getText() + RESET); // Red color for unexpected data
