@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import java.util.List;
 
 public class farmers {
     // ANSI color codes
@@ -65,15 +66,61 @@ public class farmers {
             // searchButton.click();
 
             // Wait for results to load
-            Thread.sleep(10000); // Adjust based on the actual response time
+            Thread.sleep(4000); // Adjust based on the actual response time
 
             // Verify if results are found
+            // try {
+            //     WebElement resultList = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='search-results']")));
+            //     System.out.println(GREEN + "Farmers filtered successfully!" + RESET);
+            // } catch (org.openqa.selenium.TimeoutException e) {
+            //     System.out.println(RED + "No farmers found for the selected date range!" + RESET);
+            // }
+
             try {
-                WebElement resultList = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='search-results']")));
+                // Wait for the table of search results to be visible using the provided XPath
+                WebElement resultTable = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[2]/div/main/div/div[2]/div/div[3]/div[1]/div/table/tbody")));
                 System.out.println(GREEN + "Farmers filtered successfully!" + RESET);
+
+                // Fetch all the filtered farmer rows from the table
+                List<WebElement> rows = resultTable.findElements(By.xpath(".//tr")); // Get all rows inside the tbody
+
+                if (rows.size() > 1) {
+                    System.out.println(GREEN + rows.size() + " farmers found!" + RESET); // Green color for success
+                } else {
+                    System.out.println(RED + "No farmers found for the selected date range!" + RESET); // Red color for failure
+                }
+
+                // Optionally, validate that each row contains the expected filtered data
+                // for (WebElement row : rows) {
+                //     if (!row.getText().contains("Amandf Fbaddba Duddcu" , "Zeleke Feleke Deleke", "Alemu Gam BA")) {
+                //         System.out.println(RED + "Unexpected row data: " + row.getText() + RESET); // Red color for unexpected data
+                //     }
+                // }
+
+                // List of expected names to check
+String[] expectedNames = {"Amandf Fbaddba Duddcu", "Zeleke Feleke Deleke", "Alemu Gam BA","Utst Utst Utst"};
+
+for (WebElement row : rows) {
+    String rowText = row.getText();
+    
+    boolean found = false;
+    for (String name : expectedNames) {
+        if (rowText.contains(name)) {
+            found = true;
+            break; // Exit loop if any of the names match
+        }
+    }
+
+    if (!found) {
+        System.out.println(RED + "Unexpected row data: " + row.getText() + RESET); // Red color for unexpected data
+    }
+}
+
+
             } catch (org.openqa.selenium.TimeoutException e) {
-                System.out.println(RED + "No farmers found for the selected date range!" + RESET);
+                System.out.println(RED + "No farmers found for the selected date range!" + RESET); // Red color for timeout
             }
+
 
         } catch (Exception e) {
             e.printStackTrace();
