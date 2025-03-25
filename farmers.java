@@ -42,8 +42,8 @@ public class farmers {
 
             // Wait after login
             // Wait and locate the "Farmers" link
-           WebElement farmersLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@href, '/dashboard/farmer')]")));
-           farmersLink.click();
+              WebElement farmersLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@href, '/dashboard/farmer')]")));
+              farmersLink.click();
 
            // Wait until the button with both the class and the SVG path is clickable
            
