@@ -81,12 +81,8 @@ public class farmers {
                     System.out.println(RED + "No farmers found for the selected date range!" + RESET); // Red color for failure
                 }
 
-                // Optionally, validate that each row contains the expected filtered data
-                // for (WebElement row : rows) {
-                //     if (!row.getText().contains("Amandf Fbaddba Duddcu" , "Zeleke Feleke Deleke", "Alemu Gam BA")) {
-                //         System.out.println(RED + "Unexpected row data: " + row.getText() + RESET); // Red color for unexpected data
-                //     }
-                // }
+               
+                
 
                 // List of expected names to check
 String[] expectedNames = {"Amandf Fbaddba Duddcu", "Zeleke Feleke Deleke", "Alemu Gam BA","Utst Utst Utst"};
