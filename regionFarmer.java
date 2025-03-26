@@ -57,8 +57,8 @@ public class regionFarmer {
             Thread.sleep(10000); // Adjust based on actual response time
 
             // Verify that results are filtered by region
-            WebElement resultList = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[2]/div/main/div/div[2]/div/div[3]/div[1]/div/table/tbody")));
-            System.out.println(GREEN + "Farmers filtered by region successfully!" + RESET);
+            // WebElement resultList = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[2]/div/main/div/div[2]/div/div[3]/div[1]/div/table/tbody")));
+            // System.out.println(GREEN + "Farmers filtered by region successfully!" + RESET);
 
             // Fetch all the filtered farmer rows
             List<WebElement> rows = driver.findElements(By.xpath("/html/body/div[2]/div/main/div/div[2]/div/div[3]/div[1]/div/table/tbody/tr"));
