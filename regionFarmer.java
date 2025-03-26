@@ -45,12 +45,12 @@ public class regionFarmer {
             WebElement farmersLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@href, '/dashboard/farmer')]")));
             farmersLink.click();
 
-            // Wait and locate the Region filter button
-            WebElement regionButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[5]/div/main/div/div[2]/div/div[2]/div[1]/div[3]/button")));
+            // Wait and locate the Region filter button using your provided XPath
+            WebElement regionButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("body > div.relative.flex.h-screen.overflow-hidden > div > main > div > div.flex-1.space-y-4.mt-12.pt-6.mr-8.bg-white.shadow-lg.rounded-md > div > div:nth-child(2) > div.grid.grid-cols-1.md\\:grid-cols-4.gap-4.mb-4 > div:nth-child(3) > button")));
             regionButton.click(); // Open the region filter options
 
             // Select a region from the available options (adjust this based on how options are presented)
-            WebElement regionOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Amhara')]"))); // Modify the XPath to the correct region option
+            WebElement regionOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Addis Ababa')]"))); // Modify the XPath to the correct region option
             regionOption.click(); // Click to select the region
 
             // Wait for the results to load
@@ -59,17 +59,6 @@ public class regionFarmer {
             // Verify that results are filtered by region
             // WebElement resultList = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[2]/div/main/div/div[2]/div/div[3]/div[1]/div/table/tbody")));
             // System.out.println(GREEN + "Farmers filtered by region successfully!" + RESET);
-
-            WebElement resultList = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[2]/div/main/div/div[2]/div/div[3]/div[1]/div/table/tbody")));
-System.out.println(GREEN + "Farmers filtered by region successfully!" + RESET);
-
-// Now you can use resultList if needed, for example:
-if (resultList.isDisplayed()) {
-    System.out.println(GREEN + "The result list is displayed correctly." + RESET);
-} else {
-    System.out.println(RED + "Failed to display the result list." + RESET);
-}
-
 
             // Fetch all the filtered farmer rows
             List<WebElement> rows = driver.findElements(By.xpath("/html/body/div[2]/div/main/div/div[2]/div/div[3]/div[1]/div/table/tbody/tr"));
