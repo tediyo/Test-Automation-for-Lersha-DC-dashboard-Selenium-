@@ -46,7 +46,7 @@ public class PerformanceTest {
             // Print Performance Result with Colors
             System.out.println("\nPerformance Test Result:");
             if (loadTime < 5000) {
-                System.out.println("\u001B[32m FAST: " + loadTime + " ms ✅\u001B[0m"); // Green
+                System.out.println("\u001B[32m FAST: ✅" + loadTime + " ms ✅\u001B[0m"); // Green
             } else if (loadTime >= 5000 && loadTime < 10000) {
                 System.out.println("\u001B[33m MEDIUM: ⚠️" + loadTime + " ms ⚠️\u001B[0m"); // Yellow
             } else {
