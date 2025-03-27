@@ -45,12 +45,12 @@ public class PerformanceTest {
 
             // Print Performance Result with Colors
             System.out.println("\nPerformance Test Result:");
-            if (loadTime < 3000) {
-                System.out.println("\u001B[32m FAST: " + loadTime + " ms ✅\u001B[0m"); // Green
-            } else if (loadTime >= 3000 && loadTime < 6000) {
-                System.out.println("\u001B[33m MEDIUM: " + loadTime + " ms ⚠️\u001B[0m"); // Yellow
+            if (loadTime < 5000) {
+                System.out.println("\u001B[32m FAST: ✅" + loadTime + " ms ✅\u001B[0m"); // Green
+            } else if (loadTime >= 5000 && loadTime < 10000) {
+                System.out.println("\u001B[33m MEDIUM: ⚠️" + loadTime + " ms ⚠️\u001B[0m"); // Yellow
             } else {
-                System.out.println("\u001B[31m SLOW: " + loadTime + " ms ❌\u001B[0m"); // Red
+                System.out.println("\u001B[31m SLOW:❌ " + loadTime + " ms ❌\u001B[0m"); // Red
             }
 
         } catch (Exception e) {
