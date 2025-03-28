@@ -150,6 +150,14 @@ public class PerformanceTest {
 
             // Calculate speed (Mbps)
             double speedMbps = fileSizeInBits / (timeTakenInSeconds * 1_000_000);
+            if (speedMbps > 10) {
+                //             System.out.println("\u001B[32mNetwork Speed: " + String.format("%.2f", speedMbps) + " Mbps (FAST) ✅\u001B[0m");
+                //         } else if (speedMbps >= 1) {
+                //             System.out.println("\u001B[33mNetwork Speed: " + String.format("%.2f", speedMbps) + " Mbps (MEDIUM) ⚠️\u001B[0m");
+                //         } else {
+                //             System.out.println("\u001B[31mNetwork Speed: " + String.format("%.2f", speedMbps) + " Mbps (SLOW) ❌\u001B[0m");
+                //         }
+                
             return speedMbps;
         } catch (Exception e) {
             System.out.println("Failed to check network speed.");
@@ -157,3 +165,41 @@ public class PerformanceTest {
         }
     }
 }
+// //public static double checkNetworkSpeed() {
+//     String testFileUrl = "http://speedtest.tele2.net/1MB.zip"; // Public test file (1MB)
+//     int fileSizeInBits = 1 * 8 * 1024 * 1024; // Convert 1MB to bits
+
+//     try {
+//         URL url = new URL(testFileUrl);
+//         URLConnection connection = url.openConnection();
+//         connection.setUseCaches(false);
+
+//         long startTime = System.currentTimeMillis();
+
+//         // Read the input stream (simulate download)
+//         InputStream inputStream = connection.getInputStream();
+//         while (inputStream.read() != -1) { }
+//         inputStream.close();
+
+//         long endTime = System.currentTimeMillis();
+//         double timeTakenInSeconds = (endTime - startTime) / 1000.0;
+
+//         // Calculate speed (Mbps)
+//         double speedMbps = fileSizeInBits / (timeTakenInSeconds * 1_000_000);
+
+//         // Color-coded output based on speed
+//         if (speedMbps > 10) {
+//             System.out.println("\u001B[32mNetwork Speed: " + String.format("%.2f", speedMbps) + " Mbps (FAST) ✅\u001B[0m");
+//         } else if (speedMbps >= 1) {
+//             System.out.println("\u001B[33mNetwork Speed: " + String.format("%.2f", speedMbps) + " Mbps (MEDIUM) ⚠️\u001B[0m");
+//         } else {
+//             System.out.println("\u001B[31mNetwork Speed: " + String.format("%.2f", speedMbps) + " Mbps (SLOW) ❌\u001B[0m");
+//         }
+
+//         return speedMbps;
+//     } catch (Exception e) {
+//         System.out.println("\u001B[31mFailed to check network speed.❌\u001B[0m");
+//         return -1;
+//     }
+// }
+ 
