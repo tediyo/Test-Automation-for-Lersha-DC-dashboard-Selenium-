@@ -151,12 +151,12 @@ public class PerformanceTest {
             // Calculate speed (Mbps)
             double speedMbps = fileSizeInBits / (timeTakenInSeconds * 1_000_000);
             if (speedMbps > 10) {
-                //             System.out.println("\u001B[32mNetwork Speed: " + String.format("%.2f", speedMbps) + " Mbps (FAST) ✅\u001B[0m");
-                //         } else if (speedMbps >= 1) {
-                //             System.out.println("\u001B[33mNetwork Speed: " + String.format("%.2f", speedMbps) + " Mbps (MEDIUM) ⚠️\u001B[0m");
-                //         } else {
-                //             System.out.println("\u001B[31mNetwork Speed: " + String.format("%.2f", speedMbps) + " Mbps (SLOW) ❌\u001B[0m");
-                //         }
+                            System.out.println("\u001B[32mNetwork Speed: " + String.format("%.2f", speedMbps) + " Mbps (FAST) ✅\u001B[0m");
+                        } else if (speedMbps >= 1) {
+                            System.out.println("\u001B[33mNetwork Speed: " + String.format("%.2f", speedMbps) + " Mbps (MEDIUM) ⚠️\u001B[0m");
+                        } else {
+                            System.out.println("\u001B[31mNetwork Speed: " + String.format("%.2f", speedMbps) + " Mbps (SLOW) ❌\u001B[0m");
+                        }
                 
             return speedMbps;
         } catch (Exception e) {
