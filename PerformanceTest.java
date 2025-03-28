@@ -130,7 +130,7 @@ public class PerformanceTest {
 
     // Method to check network speed
     public static double checkNetworkSpeed() {
-        String testFileUrl = "http://speedtest.tele2.net/1MB.zip"; // Public test file (1MB)
+        String testFileUrl = "http://speedtest.tele2.net/10MB.zip"; // Public test file (1MB)
         int fileSizeInBits = 1 * 8 * 1024 * 1024; // Convert 1MB to bits
 
         try {
