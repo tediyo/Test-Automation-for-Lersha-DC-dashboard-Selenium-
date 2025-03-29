@@ -4,8 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.network.Network; // Correct import without versioning
-import org.openqa.selenium.devtools.network.model.ResponseReceived; // Correct import
+import org.openqa.selenium.devtools.v134.network.Network;
+import org.openqa.selenium.devtools.v134.network.model.Response;
+
+
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -35,12 +37,14 @@ public class ServerTime {
         // Enable Chrome DevTools Protocol (CDP) for measuring server response time
         DevTools devTools = driver.getDevTools();
         devTools.createSession();
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+        devTools.send(Network.enable(Optional.of(1000000), Optional.empty(), Optional.empty()));
 
         // Capture server response time (TTFB)
         devTools.addListener(Network.responseReceived(), response -> {
-            double responseTime = response.getResponse().getTiming().getReceiveHeadersEnd(); // Adjusted timing retrieval
-            System.out.println(GREEN + "Server Response Time (TTFB): " + responseTime + " ms" + RESET);
+            Response res = response.getResponse();
+            System.out.println(GREEN + "URL: " + res.getUrl() + RESET);
+            System.out.println(GREEN + "Status Code: " + res.getStatus() + RESET);
+            System.out.println(GREEN + "Response Time (TTFB): " + res.getTiming().getReceiveHeadersEnd() + " ms" + RESET);
         });
 
         try {
