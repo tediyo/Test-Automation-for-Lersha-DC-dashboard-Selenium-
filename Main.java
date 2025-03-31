@@ -16,7 +16,7 @@ public class Main {
 
         // Find the search bar, enter "Chelsea FC", and submit
         WebElement searchBox = driver.findElement(By.name("q"));
-        searchBox.sendKeys("Chelsea FC");
+        searchBox.sendKeys("Tewodros Berhanu ");
         searchBox.submit();
 
         // Wait for results to load
