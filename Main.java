@@ -20,7 +20,7 @@ public class Main {
         searchBox.submit();
 
         // Wait for results to load
-        try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace(); }
+        try { Thread.sleep(20000); } catch (InterruptedException e) { e.printStackTrace(); }
 
         // Check if the title contains "Google"
         if (driver.getTitle().contains("Google")) {
