@@ -93,7 +93,7 @@ public class PerformanceTest {
 
             // Find and enter username
             WebElement usernameField = driver.findElement(By.name("username"));
-            usernameField.sendKeys("admin@lersha.com");
+            usernameField.sendKeys("adminn@lersha.com");
 
             // Find and enter password
             WebElement passwordField = driver.findElement(By.name("password"));
