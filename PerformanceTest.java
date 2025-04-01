@@ -97,7 +97,7 @@ public class PerformanceTest {
 
             // Find and enter password
             WebElement passwordField = driver.findElement(By.name("password"));
-            passwordField.sendKeys("Admin@123");
+            passwordField.sendKeys("Admin@1223");
 
             // Click login button
             WebElement loginButton = driver.findElement(By.xpath("//button[contains(text(), 'Sign in')]"));
