@@ -69,6 +69,7 @@
 //     }
 // }
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -152,7 +153,56 @@ public class TestPartner {
     
     
                 System.out.println(GREEN + "Eye button clicked successfully!" + RESET);
-                
+
+
+                // Wait for the "Company Detail" tab button to be clickable
+// WebElement companyDetailTab = wait.until(ExpectedConditions.elementToBeClickable(
+//     By.xpath("//button[normalize-space()='Company Detail']")
+// ));
+
+// // Optional: Scroll into view before clicking
+// ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", companyDetailTab);
+// Thread.sleep(500); // Small wait in case of transitions
+
+// // Click it using JS or normal click
+// companyDetailTab.click(); // or use JS click if needed
+// // ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", companyDetailTab);
+
+// System.out.println(GREEN + "'Company Detail' tab clicked successfully!" + RESET);
+
+// Wait for the second button using full XPath
+WebElement secondButton = wait.until(ExpectedConditions.elementToBeClickable(
+    By.xpath("/html/body/div[2]/div/main/div[2]/div/div[1]/button[2]")
+));
+
+// Optional: Scroll into view
+((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", secondButton);
+Thread.sleep(500); // Let the scroll finish
+
+// Click the second button
+secondButton.click(); // or use JS click if needed
+// ((JavascriptExecutor) driver).executeScript("arguments[0].click();", secondButton);
+
+System.out.println(GREEN + "Second button clicked successfully!" + RESET);
+
+// Wait for the button using full XPath
+// WebElement topButton = wait.until(ExpectedConditions.elementToBeClickable(
+//     By.xpath("/html/body/div[2]/div/main/div[2]/div/div[1]/button[1]")
+// ));
+
+// // Scroll into view (optional but helpful)
+// ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", topButton);
+// Thread.sleep(5000);
+
+// // Click the button
+// topButton.click(); // or use JS click if needed
+// // ((JavascriptExecutor) driver).executeScript("arguments[0].click();", topButton);
+
+// System.out.println(GREEN + "Top button clicked successfully!" + RESET);
+
+
+ /*********************************** */
+
 
             // Step 4: Locate the specific element containing "Performance Test" and check its presence in the table
             WebElement performanceTestElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//td[@class='p-4 text-primaryText align-middle' and contains(text(),'Performance Test')]")));
