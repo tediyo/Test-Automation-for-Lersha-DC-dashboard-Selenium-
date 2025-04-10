@@ -134,6 +134,45 @@ public class TestPartner {
                 System.out.println(RED + "Failed to navigate to the Partners page!" + RESET);
             }
 
+            // Step 1: Locate the search input field
+            WebElement searchInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Search partner']")));
+
+            // Step 2: Enter the phone number into the search field
+            searchInput.clear();
+            searchInput.sendKeys("251932797175");
+
+            // Step 3: Wait for the table to load results
+            WebElement table = wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("table")));
+
+            WebElement eyeButton = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("/html/body/div[2]/div/main/div/div/div/div/div/div[3]/div/div[2]/div/table/tbody/tr/td[6]/div/button[1]")
+            ));
+            eyeButton.click();
+            
+    
+    
+                System.out.println(GREEN + "Eye button clicked successfully!" + RESET);
+                
+
+            // Step 4: Locate the specific element containing "Performance Test" and check its presence in the table
+            WebElement performanceTestElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//td[@class='p-4 text-primaryText align-middle' and contains(text(),'Performance Test')]")));
+
+            // Step 5: Verify if the "Performance Test" element is found in the table
+            if (performanceTestElement != null && performanceTestElement.isDisplayed()) {
+                System.out.println(GREEN + "'Performance Test' found in the table!" + RESET);
+            } else {
+                System.out.println(RED + "'Performance Test' not found in the table!" + RESET);
+            }
+
+           // Wait until the eye button is present using the full XPath
+        //    WebElement eyeButton = wait.until(ExpectedConditions.elementToBeClickable(
+        //     By.xpath("/html/body/div[2]/div/main/div/div/div/div/div/div[3]/div/div[2]/div/table/tbody/tr/td[6]/div/button[1]")
+        // ));
+        // eyeButton.click();
+        
+
+
+        //     System.out.println(GREEN + "Eye button clicked successfully!" + RESET);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
