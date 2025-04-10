@@ -18,6 +18,7 @@ public class TestPartner {
 
         // Launch Chrome
         WebDriver driver = new ChromeDriver();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
 
         try {
             // Open login page
@@ -156,6 +157,35 @@ Thread.sleep(3000);
 // Click the button
 buttonToClickfarmer.click();
 System.out.println(GREEN + "Agent clicked successfully!" + RESET);
+
+WebElement buttonToClickFormback = wait.until(ExpectedConditions.elementToBeClickable(
+    By.xpath("/html/body/div[2]/div/main/div[2]/div/div[1]/button[3]")
+));
+Thread.sleep(3000);
+// Click the button
+buttonToClickFormback.click();
+System.out.println(GREEN + "Agent clicked successfully!" + RESET);
+
+WebElement finalButton = wait.until(ExpectedConditions.elementToBeClickable(
+        By.xpath("/html/body/div[2]/div/main/div[2]/div/div[5]/div/div[2]/div/div/div[1]/button")));
+js.executeScript("arguments[0].scrollIntoView(true);", finalButton);
+Thread.sleep(3000);
+finalButton.click();
+System.out.println(GREEN + "✅ Final button clicked successfully!" + RESET);
+
+// ---------- CLICK A SPECIFIC BUTTON USING FULL XPATH ----------
+// Description: This button is located deep within the page structure. We're using JavaScript to scroll it into view before clicking.
+
+WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(
+        By.xpath("/html/body/div[2]/div/main/div[2]/div/div[5]/div/div[2]/div/div[2]/div[1]/div/div[2]/button[1]")));
+
+js.executeScript("arguments[0].scrollIntoView(true);", editButton); // Scroll into view
+Thread.sleep(2000); // Optional: Wait briefly before clicking
+
+editButton.click(); // Click the button
+
+System.out.println(GREEN + "✅ Deep button clicked successfully!" + RESET);
+
 
  /*********************************** */
 
