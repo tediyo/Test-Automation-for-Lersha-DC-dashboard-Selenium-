@@ -109,7 +109,7 @@ public class TestPartner {
             loginButton.click();
 
             // Small wait after login
-            Thread.sleep(10000);
+            Thread.sleep(3000);
 
             // Check for login success
             if (driver.getTitle().contains("Dashboard")) {
@@ -136,24 +136,44 @@ public class TestPartner {
             }
 
             // Step 1: Locate the search input field
-            WebElement searchInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Search partner']")));
+            // WebElement searchInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Search partner']")));
 
-            // Step 2: Enter the phone number into the search field
-            searchInput.clear();
-            searchInput.sendKeys("251932797175");
+            // // Step 2: Enter the phone number into the search field
+            // searchInput.clear();
+            // searchInput.sendKeys("251932797175");
 
-            // Step 3: Wait for the table to load results
-            WebElement table = wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("table")));
+            // // Step 3: Wait for the table to load results
+            // WebElement table = wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("table")));
 
-            WebElement eyeButton = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("/html/body/div[2]/div/main/div/div/div/div/div/div[3]/div/div[2]/div/table/tbody/tr/td[6]/div/button[1]")
-            ));
-            eyeButton.click();
+            // WebElement eyeButton = wait.until(ExpectedConditions.elementToBeClickable(
+            //     By.xpath("/html/body/div[2]/div/main/div/div/div/div/div/div[3]/div/div[2]/div/table/tbody/tr/td[6]/div/button[1]")
+            // ));
+            // eyeButton.click();
             
     
     
-                System.out.println(GREEN + "Eye button clicked successfully!" + RESET);
+            //     System.out.println(GREEN + "Eye button clicked successfully!" + RESET);
 
+
+            WebElement searchInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Search partner']")));
+            searchInput.clear();
+            searchInput.sendKeys("251932797175");
+        
+            // Step 2: Wait for the table to load the results (ensure the table is visible)
+            WebElement table = wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("table")));
+        
+            // Step 3: Wait for the search result to load (you can check for the visibility of a row or a specific element in the table)
+            WebElement resultRow = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//table/tbody/tr[td[contains(text(),'251932797175')]]")
+            ));
+        
+            // Step 4: Locate the eye button inside the specific row
+            WebElement eyeButton = resultRow.findElement(By.xpath(".//td[6]/div/button[1]"));
+        
+            // Step 5: Click the eye button
+            eyeButton.click();
+            System.out.println(GREEN + "Eye button clicked successfully!" + RESET);
+        
 
                 // Wait for the "Company Detail" tab button to be clickable
 WebElement companyDetailTab = wait.until(ExpectedConditions.elementToBeClickable(
@@ -162,7 +182,7 @@ WebElement companyDetailTab = wait.until(ExpectedConditions.elementToBeClickable
 
 // Optional: Scroll into view before clicking
 ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", companyDetailTab);
-Thread.sleep(500); // Small wait in case of transitions
+Thread.sleep(3000); // Small wait in case of transitions
 
 // Click it using JS or normal click
 companyDetailTab.click(); // or use JS click if needed
@@ -171,19 +191,20 @@ companyDetailTab.click(); // or use JS click if needed
 System.out.println(GREEN + "'Company Detail' tab clicked successfully!" + RESET);
 
 // Wait for the second button using full XPath
-WebElement secondButton = wait.until(ExpectedConditions.elementToBeClickable(
-    By.xpath("/html/body/div[2]/div/main/div[2]/div/div[1]/button[2]")
+// Wait until the Project List button is clickable by its visible text
+WebElement projectListButton = wait.until(ExpectedConditions.elementToBeClickable(
+    By.xpath("//button[normalize-space(text())='Project List']")
 ));
 
 // Optional: Scroll into view
-((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", secondButton);
-Thread.sleep(500); // Let the scroll finish
+((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", projectListButton);
+Thread.sleep(3000); // Wait a bit for scroll
 
-// Click the second button
-secondButton.click(); // or use JS click if needed
-// ((JavascriptExecutor) driver).executeScript("arguments[0].click();", secondButton);
+// Click the Project List button
+projectListButton.click();
 
-System.out.println(GREEN + "Project List button clicked successfully!" + RESET);
+System.out.println(GREEN + "Clicked the 'Project List' button successfully!" + RESET);
+
 
 // Wait for the button using full XPath
 // WebElement topButton = wait.until(ExpectedConditions.elementToBeClickable(
@@ -199,6 +220,24 @@ System.out.println(GREEN + "Project List button clicked successfully!" + RESET);
 // // ((JavascriptExecutor) driver).executeScript("arguments[0].click();", topButton);
 
 // System.out.println(GREEN + "Top button clicked successfully!" + RESET);
+
+
+// Wait for the table cell to be clickable
+// Wait until the button is clickable
+WebElement row2Col5Button = wait.until(ExpectedConditions.elementToBeClickable(
+    By.xpath("/html/body/div[2]/div/main/div[2]/div/div[3]/div/div[3]/div/div[2]/div/table/tbody/tr[2]/td[5]/div/button")
+));
+
+// Optional: Scroll into view
+((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", row2Col5Button);
+Thread.sleep(3000); // Brief pause to ensure scroll is done
+
+// Click the button
+row2Col5Button.click();
+
+//System.out.println(GREEN + "Clicked the button in row 2, column 5 of the table!" + RESET);
+
+System.out.println(GREEN + "Clicked on RealPerformance Project, 5th column of the table!" + RESET);
 
 
  /*********************************** */
