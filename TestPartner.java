@@ -185,7 +185,7 @@ Thread.sleep(10000); // Wait for stabilization after scroll
 try {
     // Try clicking the button
     button.click();
-    Thread.sleep(10000);
+    Thread.sleep(20000);
     System.out.println(GREEN + "✅ Button clicked successfully!" + RESET);
 } catch (Exception e) {
     // Catch and log any errors if clicking fails
