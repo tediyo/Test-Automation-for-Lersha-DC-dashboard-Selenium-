@@ -150,7 +150,7 @@ WebElement buttonToClickForm = wait.until(ExpectedConditions.elementToBeClickabl
 Thread.sleep(3000);
 // Click the button
 buttonToClickForm.click();
-System.out.println(GREEN + "Agent clicked successfully!" + RESET);
+System.out.println(GREEN + "FormLists clicked successfully!" + RESET);
 
 WebElement buttonToClickfarmer = wait.until(ExpectedConditions.elementToBeClickable(
     By.xpath("/html/body/div[2]/div/main/div[2]/div/div[1]/button[4]")
@@ -158,7 +158,7 @@ WebElement buttonToClickfarmer = wait.until(ExpectedConditions.elementToBeClicka
 Thread.sleep(3000);
 // Click the button
 buttonToClickfarmer.click();
-System.out.println(GREEN + "Agent clicked successfully!" + RESET);
+System.out.println(GREEN + "Farmer clicked successfully!" + RESET);
 
 WebElement buttonToClickFormback = wait.until(ExpectedConditions.elementToBeClickable(
     By.xpath("/html/body/div[2]/div/main/div[2]/div/div[1]/button[3]")
@@ -166,14 +166,14 @@ WebElement buttonToClickFormback = wait.until(ExpectedConditions.elementToBeClic
 Thread.sleep(3000);
 // Click the button
 buttonToClickFormback.click();
-System.out.println(GREEN + "Agent clicked successfully!" + RESET);
+System.out.println(GREEN + "FormlistsBack clicked successfully!" + RESET);
 
 WebElement finalButton = wait.until(ExpectedConditions.elementToBeClickable(
         By.xpath("/html/body/div[2]/div/main/div[2]/div/div[5]/div/div[2]/div/div/div[1]/button")));
 js.executeScript("arguments[0].scrollIntoView(true);", finalButton);
 Thread.sleep(3000);
 finalButton.click();
-System.out.println(GREEN + "✅ Final button clicked successfully!" + RESET);
+System.out.println(GREEN + "✅ Section button clicked successfully!" + RESET);
 
 
 WebElement button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"radix-:rn:-content-formList\"]/div/div[2]/div/div[2]/div[7]/div/div[2]/button[1]")));
@@ -186,18 +186,11 @@ try {
     // Try clicking the button
     button.click();
     Thread.sleep(20000);
-    System.out.println(GREEN + "✅ Button clicked successfully!" + RESET);
+    System.out.println(GREEN + "✅ EDIT Button clicked successfully!" + RESET);
 } catch (Exception e) {
     // Catch and log any errors if clicking fails
     System.out.println(RED + "❌ Click failed: " + e.getMessage()  + RESET);
 }
-
-
-
-
-
-
- /*********************************** */
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -206,3 +199,4 @@ try {
         }
     }
 }
+
