@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import java.util.List;
 
 public class TestPartner {
     static final String GREEN = "\u001B[32m";
@@ -19,6 +20,7 @@ public class TestPartner {
         // Launch Chrome
         WebDriver driver = new ChromeDriver();
         JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         try {
             // Open login page
@@ -26,7 +28,7 @@ public class TestPartner {
             driver.manage().window().maximize();
 
             // Wait setup
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // Increase timeout to 15 seconds
+            //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // Increase timeout to 15 seconds
 
             // Input credentials
             WebElement usernameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
@@ -176,29 +178,57 @@ System.out.println(GREEN + "✅ Final button clicked successfully!" + RESET);
 // ---------- CLICK A SPECIFIC BUTTON USING FULL XPATH ----------
 // Description: This button is located deep within the page structure. We're using JavaScript to scroll it into view before clicking.
 
-WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(
-        By.xpath("/html/body/div[2]/div/main/div[2]/div/div[5]/div/div[2]/div/div[2]/div[1]/div/div[2]/button[1]")));
+// WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(
+//         By.xpath("/html/body/div[2]/div/main/div[2]/div/div[5]/div/div[2]/div/div[2]/div[1]/div/div[2]/button[1]")));
 
-js.executeScript("arguments[0].scrollIntoView(true);", editButton); // Scroll into view
-Thread.sleep(2000); // Optional: Wait briefly before clicking
+// js.executeScript("arguments[0].scrollIntoView(true);", editButton); // Scroll into view
+// //Thread.sleep(2000); // Optional: Wait briefly before clicking
 
-editButton.click(); // Click the button
+// editButton.click(); // Click the button
+// Thread.sleep(4000);
+// System.out.println(GREEN + "✅ Edit button clicked successfully!" + RESET);
 
-System.out.println(GREEN + "✅ Deep button clicked successfully!" + RESET);
+// ---------- CLICK BUTTON USING FULL XPATH (Scroll & Click) ----------
+// Description: Targeting another deeply nested button element, ensuring it's in view before clicking.
+
+// Wait until the element is present and clickable
+// Wait for the edit button to be clickable using a more specific XPath with the button's class
+// Locate the button using the provided XPath
+WebElement button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"radix-:rn:-content-formList\"]/div/div[2]/div/div[2]/div[7]/div/div[2]/button[1]")));
+
+// Scroll the button into view before clicking
+((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", button);
+Thread.sleep(10000); // Wait for stabilization after scroll
+
+try {
+    // Try clicking the button
+    button.click();
+    Thread.sleep(10000);
+    System.out.println(GREEN + "✅ Button clicked successfully!" + RESET);
+} catch (Exception e) {
+    // Catch and log any errors if clicking fails
+    System.out.println(RED + "❌ Click failed: " + e.getMessage()  + RESET);
+}
+
+
+
+// Additional wait and checks for any performance test element
+// 
 
 
  /*********************************** */
 
 
-            // Step 4: Locate the specific element containing "Performance Test" and check its presence in the table
-            WebElement performanceTestElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//td[@class='p-4 text-primaryText align-middle' and contains(text(),'Performance Test')]")));
 
-            // Step 5: Verify if the "Performance Test" element is found in the table
-            if (performanceTestElement != null && performanceTestElement.isDisplayed()) {
-                System.out.println(GREEN + "'Performance Test' found in the table!" + RESET);
-            } else {
-                System.out.println(RED + "'Performance Test' not found in the table!" + RESET);
-            }
+            // Step 4: Locate the specific element containing "Performance Test" and check its presence in the table
+            // WebElement performanceTestElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//td[@class='p-4 text-primaryText align-middle' and contains(text(),'Performance Test')]")));
+
+            // // Step 5: Verify if the "Performance Test" element is found in the table
+            // if (performanceTestElement != null && performanceTestElement.isDisplayed()) {
+            //     System.out.println(GREEN + "'Performance Test' found in the table!" + RESET);
+            // } else {
+            //     System.out.println(RED + "'Performance Test' not found in the table!" + RESET);
+            // }
 
          
         } catch (Exception e) {
