@@ -234,11 +234,37 @@ Thread.sleep(3000); // Brief pause to ensure scroll is done
 
 // Click the button
 row2Col5Button.click();
-
+Thread.sleep(3000);
 //System.out.println(GREEN + "Clicked the button in row 2, column 5 of the table!" + RESET);
 
 System.out.println(GREEN + "Clicked on RealPerformance Project, 5th column of the table!" + RESET);
 
+
+// Wait for the button to be clickable
+WebElement buttonToClick = wait.until(ExpectedConditions.elementToBeClickable(
+    By.xpath("/html/body/div[2]/div/main/div[2]/div/div[1]/button[2]")
+));
+Thread.sleep(3000);
+// Click the button
+buttonToClick.click();
+System.out.println(GREEN + "Agent clicked successfully!" + RESET);
+
+
+WebElement buttonToClickForm = wait.until(ExpectedConditions.elementToBeClickable(
+    By.xpath("/html/body/div[2]/div/main/div[2]/div/div[1]/button[3]")
+));
+Thread.sleep(3000);
+// Click the button
+buttonToClickForm.click();
+System.out.println(GREEN + "Agent clicked successfully!" + RESET);
+
+WebElement buttonToClickfarmer = wait.until(ExpectedConditions.elementToBeClickable(
+    By.xpath("/html/body/div[2]/div/main/div[2]/div/div[1]/button[4]")
+));
+Thread.sleep(3000);
+// Click the button
+buttonToClickfarmer.click();
+System.out.println(GREEN + "Agent clicked successfully!" + RESET);
 
  /*********************************** */
 
