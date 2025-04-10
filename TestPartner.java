@@ -175,25 +175,7 @@ Thread.sleep(3000);
 finalButton.click();
 System.out.println(GREEN + "✅ Final button clicked successfully!" + RESET);
 
-// ---------- CLICK A SPECIFIC BUTTON USING FULL XPATH ----------
-// Description: This button is located deep within the page structure. We're using JavaScript to scroll it into view before clicking.
 
-// WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(
-//         By.xpath("/html/body/div[2]/div/main/div[2]/div/div[5]/div/div[2]/div/div[2]/div[1]/div/div[2]/button[1]")));
-
-// js.executeScript("arguments[0].scrollIntoView(true);", editButton); // Scroll into view
-// //Thread.sleep(2000); // Optional: Wait briefly before clicking
-
-// editButton.click(); // Click the button
-// Thread.sleep(4000);
-// System.out.println(GREEN + "✅ Edit button clicked successfully!" + RESET);
-
-// ---------- CLICK BUTTON USING FULL XPATH (Scroll & Click) ----------
-// Description: Targeting another deeply nested button element, ensuring it's in view before clicking.
-
-// Wait until the element is present and clickable
-// Wait for the edit button to be clickable using a more specific XPath with the button's class
-// Locate the button using the provided XPath
 WebElement button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"radix-:rn:-content-formList\"]/div/div[2]/div/div[2]/div[7]/div/div[2]/button[1]")));
 
 // Scroll the button into view before clicking
@@ -212,25 +194,11 @@ try {
 
 
 
-// Additional wait and checks for any performance test element
-// 
+
 
 
  /*********************************** */
 
-
-
-            // Step 4: Locate the specific element containing "Performance Test" and check its presence in the table
-            // WebElement performanceTestElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//td[@class='p-4 text-primaryText align-middle' and contains(text(),'Performance Test')]")));
-
-            // // Step 5: Verify if the "Performance Test" element is found in the table
-            // if (performanceTestElement != null && performanceTestElement.isDisplayed()) {
-            //     System.out.println(GREEN + "'Performance Test' found in the table!" + RESET);
-            // } else {
-            //     System.out.println(RED + "'Performance Test' not found in the table!" + RESET);
-            // }
-
-         
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
