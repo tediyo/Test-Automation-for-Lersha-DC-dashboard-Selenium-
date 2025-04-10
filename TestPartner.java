@@ -1,105 +1,63 @@
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
-public class PerformanceTest {
+public class TestPartner {
+    static final String GREEN = "\u001B[32m";
+    static final String RESET = "\u001B[0m";
+    static final String RED = "\u001B[31m";
+
     public static void main(String[] args) {
-        // Set up ChromeDriver
+        // Set path for ChromeDriver
         System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
-        // WebDriverManager.chromedriver().setup();
 
-        // Start WebDriver
+        // Launch Chrome
         WebDriver driver = new ChromeDriver();
 
         try {
-            // Measure network speed before test
-            double networkSpeed = checkNetworkSpeed();
-            System.out.println("\nNetwork Speed: " + networkSpeed + " Mbps");
+            // Open login page
+            driver.get("http://51.21.130.55:8097/");
+            driver.manage().window().maximize();
 
-            // Start time measurement
-            long startTime = System.currentTimeMillis();
+            // Wait setup
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-            // Open the login page
-            String testUrl = "http://51.21.130.55:8097/";
-            driver.get(testUrl);
+            // Input credentials
+            WebElement usernameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
+            usernameField.sendKeys("admin@Lersha.com");
 
-            // Find and enter username
-            WebElement usernameField = driver.findElement(By.name("username"));
-            usernameField.sendKeys("admin@lersha.com");
-
-            // Find and enter password
-            WebElement passwordField = driver.findElement(By.name("password"));
+            WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("password")));
             passwordField.sendKeys("Admin@123");
 
-            // Click login button
-            WebElement loginButton = driver.findElement(By.xpath("//button[contains(text(), 'Sign in')]"));
+            // Click login
+            WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Sign in')]")));
             loginButton.click();
 
-            // Wait a few seconds for login to complete
-            Thread.sleep(5000);
+            // Small wait after login
+            Thread.sleep(10000);
 
-            // End time measurement
-            long endTime = System.currentTimeMillis();
-            long loadTime = endTime - startTime;
-
-            // Print Performance Result
-            System.out.println("\nPerformance Test Result:");
-            if (loadTime < 5000) {
-                System.out.println("\u001B[32m FAST: ✅" + loadTime + " ms ✅\u001B[0m"); // Green
-            } else if (loadTime >= 5000 && loadTime < 10000) {
-                System.out.println("\u001B[33m MEDIUM: ⚠️  " + loadTime + " ms ⚠️\u001B[0m"); // Yellow
+            // Check for login success
+            if (driver.getTitle().contains("Dashboard")) {
+                System.out.println(GREEN + "Login successful!" + RESET);
             } else {
-                System.out.println("\u001B[31m SLOW:❌ " + loadTime + " ms ❌\u001B[0m"); // Red
+                System.out.println(RED + "Login failed!" + RESET);
             }
+
+            // Click on the "Partners" span element
+            WebElement partnersLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Partners')]")));
+            partnersLink.click();
+
+            // Wait after clicking the "Partners" link (optional)
+            Thread.sleep(3000);
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            // Close the browser
-            driver.quit();
-        }
-    }
-
-    // Method to check network speed
-    public static double checkNetworkSpeed() {
-        String testFileUrl = "http://speedtest.tele2.net/1MB.zip"; // Public test file (1MB)
-        int fileSizeInBits = 1 * 8 * 1024 * 1024; // Convert 1MB to bits
-
-        try {
-            URL url = new URL(testFileUrl);
-            URLConnection connection = url.openConnection();
-            connection.setUseCaches(false);
-
-            long startTime = System.currentTimeMillis();
-
-            // Read the input stream (simulate download)
-            InputStream inputStream = connection.getInputStream();
-            while (inputStream.read() != -1) { }
-            inputStream.close();
-
-            long endTime = System.currentTimeMillis();
-            double timeTakenInSeconds = (endTime - startTime) / 1000.0;
-
-            // Calculate speed (Mbps)
-            double speedMbps = fileSizeInBits / (timeTakenInSeconds * 1_000_000);
-            if (speedMbps > 10) {
-            System.out.println("\u001B[32mNetwork Speed: " + String.format("%.2f", speedMbps) + " Mbps (FAST) ✅\u001B[0m");
-        } else if (speedMbps >= 1) {
-            System.out.println("\u001B[33mNetwork Speed: " + String.format("%.2f", speedMbps) + " Mbps (MEDIUM) ⚠️\u001B[0m");
-        } else {
-            System.out.println("\u001B[31mNetwork Speed: " + String.format("%.2f", speedMbps) + " Mbps (SLOW) ❌\u001B[0m");
-        }
-
-            return speedMbps;
-        } catch (Exception e) {
-            System.out.println("Failed to check network speed.");
-            return -1;
+            driver.quit(); // Close the browser
         }
     }
 }
