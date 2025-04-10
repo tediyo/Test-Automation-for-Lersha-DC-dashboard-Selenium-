@@ -156,19 +156,19 @@ public class TestPartner {
 
 
                 // Wait for the "Company Detail" tab button to be clickable
-// WebElement companyDetailTab = wait.until(ExpectedConditions.elementToBeClickable(
-//     By.xpath("//button[normalize-space()='Company Detail']")
-// ));
+WebElement companyDetailTab = wait.until(ExpectedConditions.elementToBeClickable(
+    By.xpath("//button[normalize-space()='Company Detail']")
+));
 
-// // Optional: Scroll into view before clicking
-// ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", companyDetailTab);
-// Thread.sleep(500); // Small wait in case of transitions
+// Optional: Scroll into view before clicking
+((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", companyDetailTab);
+Thread.sleep(500); // Small wait in case of transitions
 
-// // Click it using JS or normal click
-// companyDetailTab.click(); // or use JS click if needed
-// // ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", companyDetailTab);
+// Click it using JS or normal click
+companyDetailTab.click(); // or use JS click if needed
+// ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", companyDetailTab);
 
-// System.out.println(GREEN + "'Company Detail' tab clicked successfully!" + RESET);
+System.out.println(GREEN + "'Company Detail' tab clicked successfully!" + RESET);
 
 // Wait for the second button using full XPath
 WebElement secondButton = wait.until(ExpectedConditions.elementToBeClickable(
@@ -183,7 +183,7 @@ Thread.sleep(500); // Let the scroll finish
 secondButton.click(); // or use JS click if needed
 // ((JavascriptExecutor) driver).executeScript("arguments[0].click();", secondButton);
 
-System.out.println(GREEN + "Second button clicked successfully!" + RESET);
+System.out.println(GREEN + "Project List button clicked successfully!" + RESET);
 
 // Wait for the button using full XPath
 // WebElement topButton = wait.until(ExpectedConditions.elementToBeClickable(
