@@ -322,7 +322,7 @@ if (duration <= 3000) {
             } else if (duration <= 7000) {
                 System.out.println("\u001B[33m" + "⏱️ Load Time: Medium" + RESET);
             } else {
-                System.out.println(RED + "🐌 Load Time: Slow" + RESET);
+                System.out.println(RED + "🐌  Load Time: Slow" + RESET);
             }
            
 
