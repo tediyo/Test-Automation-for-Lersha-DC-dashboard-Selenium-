@@ -43,15 +43,16 @@ public class DynamicLoad {
             // Click login
             WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Sign in')]")));
             loginButton.click();
+            Thread.sleep(3000);
             long endTime = System.currentTimeMillis();
             long duration = endTime - startTime; 
-            if (driver.getTitle().contains("Dashboard")) {
+            if (driver.getTitle().contains("Data Collection Dashboard")) {
                 System.out.println(GREEN + "1- Login successful!" + RESET);
             } else {
                 System.out.println(RED + "1- Login failed!" + RESET);
             }
            
-            System.out.println(YELLOW + "Time taken to Log In to the Dashboard: " + duration + " ms" + RESET);
+            System.out.println( "Time taken to Log In to the Dashboard: " + duration + " ms" );
 
 
             if (duration <= 3000) {
@@ -82,12 +83,12 @@ public class DynamicLoad {
             
             // Check if the page loaded correctly by verifying the "Partners" link is visible
             if (partnersLinkAfterClick != null && partnersLinkAfterClick.isDisplayed()) {
-                System.out.println(GREEN + " 2- Successfully navigated to the Partners page!" + RESET);
+                System.out.println(GREEN + "2-Successfully navigated to the Partners page!" + RESET);
             } else {
-                System.out.println(RED + "2- Failed to navigate to the Partners page!" + RESET);
+                System.out.println(RED + "2-Failed to navigate to the Partners page!" + RESET);
             }
 
-            System.out.println(GREEN + "  Time taken to navigate partner page" + RESET);
+            System.out.println(  "Time taken to navigate partner page" + duration + "ms" );
             //Load Time
             if (duration <= 3000) {
                 System.out.println(GREEN + "⚡ Load Time: Fast" + RESET);
@@ -117,7 +118,7 @@ public class DynamicLoad {
             ));
             System.out.println(YELLOW + "3- Table loaded successfully after search: "  + RESET);
 
-            System.out.println(YELLOW + "Time taken to load the table after search: " + duration + " ms" + RESET);
+            System.out.println("Time taken to load the table after search: " + duration + "ms" );
 
             if (duration <= 3000) {
                 System.out.println(GREEN + "⚡ Load Time: Fast" + RESET);
@@ -139,7 +140,7 @@ public class DynamicLoad {
             endTime = System.currentTimeMillis();
             duration = endTime - startTime;  // Calculate loading time for eye button
             
-            System.out.println(YELLOW + "3.1- Time taken to load Partner Detail Page: " + duration + " ms" + RESET);
+            System.out.println("3.1- Time taken to load Partner Detail Page: " + duration + " ms" );
 
             if (duration <= 3000) {
                 System.out.println(GREEN + "⚡ Load Time: Fast" + RESET);
@@ -166,7 +167,7 @@ public class DynamicLoad {
             endTime = System.currentTimeMillis();
             duration = endTime - startTime;  // Calculate loading time for Company Detail tab button
             System.out.println(GREEN + "'4-Company Detail' tab clicked successfully!" + RESET);
-            System.out.println(YELLOW + "Time taken to load 'Company Detail' tab: " + duration + " ms" + RESET);
+            System.out.println("Time taken to load 'Company Detail' tab: " + duration + " ms" );
 //Load Time
 if (duration <= 3000) {
     System.out.println(GREEN + "⚡ Load Time: Fast" + RESET);
@@ -196,7 +197,7 @@ if (duration <= 3000) {
             duration = endTime - startTime; 
             System.out.println(GREEN + "5-Clicked the 'Project List' button successfully!" + RESET);
  
-            System.out.println(YELLOW + "Time taken to load 'Project List' button: " + duration + " ms" + RESET);
+            System.out.println("Time taken to load 'Project List' button: " + duration + " ms" );
             if (duration <= 3000) {
                 System.out.println(GREEN + "⚡ Load Time: Fast" + RESET);
             } else if (duration <= 7000) {
@@ -206,7 +207,7 @@ if (duration <= 3000) {
             }
             
             WebElement row2Col5Button = wait.until(ExpectedConditions.elementToBeClickable(
-                    By.xpath("/html/body/div[2]/div/main/div[2]/div/div[3]/div/div[3]/div/div[2]/div/table/tbody/tr[2]/td[5]/div/button")
+                    By.xpath("/html/body/div[2]/div/main/div[2]/div/div[3]/div/div[3]/div/div[2]/div/table/tbody/tr[3]/td[5]/div/button")
             ));
 
             // Start time measurement for Row 2 Column 5 button click
@@ -222,7 +223,7 @@ if (duration <= 3000) {
             endTime = System.currentTimeMillis();
             duration = endTime - startTime;  // Calculate loading time for Row 2 Column 5 button
             System.out.println(GREEN + "6- Clicked on RealPerformance Project, 5th column of the table!" + RESET);
-            System.out.println(YELLOW + "Time taken to load rear performance Test project: " + duration + " ms" + RESET);
+            System.out.println("Time taken to load rear performance Test project: " + duration + " ms");
             if (duration <= 3000) {
                 System.out.println(GREEN + "⚡ Load Time: Fast" + RESET);
             } else if (duration <= 7000) {
@@ -246,7 +247,7 @@ if (duration <= 3000) {
             endTime = System.currentTimeMillis();
             duration = endTime - startTime;  // Calculate loading time for Agent button
             System.out.println(GREEN + "7-Agent clicked successfully!" + RESET);
-            System.out.println(YELLOW + "Time taken to load 'Agent' button: " + duration + " ms" + RESET);
+            System.out.println("Time taken to load 'Agent' button: " + duration + " ms");
             if (duration <= 3000) {
                 System.out.println(GREEN + "⚡ Load Time: Fast" + RESET);
             } else if (duration <= 7000) {
@@ -269,7 +270,7 @@ if (duration <= 3000) {
             endTime = System.currentTimeMillis();
             duration = endTime - startTime;  // Calculate loading time for FormLists button
             System.out.println(GREEN + "8-FormLists clicked successfully!" + RESET);
-            System.out.println(YELLOW + "Time taken to load 'FormLists' button: " + duration + " ms" + RESET);
+            System.out.println("Time taken to load 'FormLists' button: " + duration + " ms");
             if (duration <= 3000) {
                 System.out.println(GREEN + "⚡ Load Time: Fast" + RESET);
             } else if (duration <= 7000) {
@@ -292,7 +293,7 @@ if (duration <= 3000) {
             endTime = System.currentTimeMillis();
             duration = endTime - startTime;  // Calculate loading time for Farmer button
             System.out.println(GREEN + "9-Farmer clicked successfully!" + RESET);
-            System.out.println(YELLOW + "Time taken to load 'Farmer' button: " + duration + " ms" + RESET);
+            System.out.println("Time taken to load 'Farmer' button: " + duration + " ms" );
 
             
             if (duration <= 3000) {
@@ -315,7 +316,7 @@ if (duration <= 3000) {
             endTime = System.currentTimeMillis();
             duration = endTime - startTime;  // Calculate loading time for FormListsBack button
             System.out.println(GREEN + "10-Formlists clicked again successfully!" + RESET);
-            System.out.println(YELLOW + "Time taken to load 'FormLists again' button: " + duration + " ms" + RESET);
+            System.out.println("Time taken to load 'FormLists again' button: " + duration + " ms");
             if (duration <= 3000) {
                 System.out.println(GREEN + "⚡ Load Time: Fast" + RESET);
             } else if (duration <= 7000) {
@@ -337,7 +338,7 @@ if (duration <= 3000) {
             endTime = System.currentTimeMillis();
             duration = endTime - startTime;  // Calculate loading time for Section button
             System.out.println(GREEN + "11-✅ Section button clicked successfully!" + RESET);
-            System.out.println(YELLOW + "Time taken to load 'Section' button: " + duration + " ms" + RESET);
+            System.out.println("Time taken to load 'Section' button: " + duration + " ms" );
             if (duration <= 3000) {
                 System.out.println(GREEN + "⚡ Load Time: Fast" + RESET);
             } else if (duration <= 7000) {
@@ -375,20 +376,20 @@ try {
     // }
     // Print the loading time for the button
     System.out.println(GREEN + "12-✅ EDIT Button clicked successfully!" + RESET);
-    System.out.println(YELLOW + "Time taken to load 'EDIT' button: " + duration + " ms" + RESET);
+    //System.out.println(YELLOW + "Time taken to load 'EDIT' button: " + duration + " ms" + RESET);
    
 } catch (Exception e) {
     // Catch and log any errors if clicking fails
     System.out.println(RED + "❌ Click failed: " + e.getMessage()  + RESET);
 }
 
-if (duration <= 3000) {
-    System.out.println(GREEN + "⚡ Load Time: Fast" + RESET);
-} else if (duration <= 7000) {
-    System.out.println("\u001B[33m" + "⏱️ Load Time: Medium" + RESET);
-} else {
-    System.out.println(RED + "🐌 Load Time: Slow" + RESET);
-}
+// if (duration <= 3000) {
+//     System.out.println(GREEN + "⚡ Load Time: Fast" + RESET);
+// } else if (duration <= 7000) {
+//     System.out.println("\u001B[33m" + "⏱️ Load Time: Medium" + RESET);
+// } else {
+//     System.out.println(RED + "🐌 Load Time: Slow" + RESET);
+// }
 
         } catch (Exception e) {
             e.printStackTrace();
