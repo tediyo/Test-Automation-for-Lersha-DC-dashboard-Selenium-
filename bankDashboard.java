@@ -320,6 +320,42 @@ try {
     e.printStackTrace();
 }
 
+// 10-#########################################################Click Loan Section
+long loanSectionClickStart = System.currentTimeMillis();
+
+try {
+    // Locate the "Loan Section" span inside a button
+    WebElement loanSectionButton = wait.until(ExpectedConditions.elementToBeClickable(
+        By.xpath("//button[span[contains(text(), 'Loan Section')]]")
+    ));
+
+    // Scroll into view
+    js.executeScript("arguments[0].scrollIntoView(true);", loanSectionButton);
+    Thread.sleep(1000); // smooth scroll
+
+    // Click using JavaScript
+    js.executeScript("arguments[0].click();", loanSectionButton);
+    Thread.sleep(3000); // wait for any sub-menu or section to load
+
+    long loanSectionClickEnd = System.currentTimeMillis();
+    long loanSectionDuration = loanSectionClickEnd - loanSectionClickStart;
+
+    System.out.println(GREEN + "10- 'Loan Section' clicked successfully!" + RESET);
+    System.out.println("Time taken to open 'Loan Section': " + loanSectionDuration + " ms");
+
+    if (loanSectionDuration <= 3000) {
+        System.out.println(GREEN + "⚡ Loan Section Load Time: Fast" + RESET);
+    } else if (loanSectionDuration <= 7000) {
+        System.out.println(YELLOW + "⏱️ Loan Section Load Time: Medium" + RESET);
+    } else {
+        System.out.println(RED + "🐌 Loan Section Load Time: Slow" + RESET);
+    }
+
+} catch (Exception e) {
+    System.out.println(RED + "10- Failed to click 'Loan Section'!" + RESET);
+    e.printStackTrace();
+}
+
 
         } catch (Exception e) {
             e.printStackTrace();
