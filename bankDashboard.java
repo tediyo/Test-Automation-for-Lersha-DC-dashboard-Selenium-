@@ -466,6 +466,107 @@ try {
     e.printStackTrace();
 }
 
+// 14-#########################################################Click Disburse Loan ( Yes/ No)
+
+try {
+    long okClickStart = System.currentTimeMillis();
+
+    // Wait until the button with text 'Ok' and matching class is clickable
+    WebElement okButton = wait.until(ExpectedConditions.elementToBeClickable(
+        By.xpath("//button[text()='Ok' and contains(@class, 'bg-[var(--primary)]')]")
+    ));
+
+    // Scroll into view and click using JavaScript (for consistency)
+    js.executeScript("arguments[0].scrollIntoView(true);", okButton);
+    Thread.sleep(300); // give scroll some time
+    js.executeScript("arguments[0].click();", okButton);
+
+    long okClickEnd = System.currentTimeMillis();
+    long okClickDuration = okClickEnd - okClickStart;
+
+    System.out.println(GREEN + "✅ 'Ok' button clicked successfully!" + RESET);
+    System.out.println("⏱️ Time taken: " + okClickDuration + " ms");
+
+    if (okClickDuration <= 3000) {
+        System.out.println(GREEN + "⚡ Ok Button Action: Fast" + RESET);
+    } else if (okClickDuration <= 7000) {
+        System.out.println(YELLOW + "⏱️ Ok Button Action: Medium" + RESET);
+    } else {
+        System.out.println(RED + "🐌 Ok Button Action: Slow" + RESET);
+    }
+
+} catch (Exception e) {
+    System.out.println(RED + "❌ Failed to click the 'Ok' button!" + RESET);
+    e.printStackTrace();
+}
+
+// 15-######################################################### Rejected Loan ( Yes/ No)
+try {
+    long rejectedListClickStart = System.currentTimeMillis();
+
+    // Wait for the "Rejected List" link to be clickable
+    WebElement rejectedListLink = wait.until(ExpectedConditions.elementToBeClickable(
+        By.xpath("//a[.//span[text()='Rejected List']]")
+    ));
+    Thread.sleep(5000);
+    // Scroll into view and click using JavaScript
+    js.executeScript("arguments[0].scrollIntoView(true);", rejectedListLink);
+    Thread.sleep(300); // let it scroll
+    js.executeScript("arguments[0].click();", rejectedListLink);
+
+    long rejectedListClickEnd = System.currentTimeMillis();
+    long rejectedListClickDuration = rejectedListClickEnd - rejectedListClickStart;
+
+    System.out.println(GREEN + "✅ 'Rejected List' clicked successfully!" + RESET);
+    System.out.println("⏱️ Time taken: " + rejectedListClickDuration + " ms");
+
+    if (rejectedListClickDuration <= 3000) {
+        System.out.println(GREEN + "⚡ Rejected List Click: Fast" + RESET);
+    } else if (rejectedListClickDuration <= 7000) {
+        System.out.println(YELLOW + "⏱️ Rejected List Click: Medium" + RESET);
+    } else {
+        System.out.println(RED + "🐌 Rejected List Click: Slow" + RESET);
+    }
+
+} catch (Exception e) {
+    System.out.println(RED + "❌ Failed to click 'Rejected List'!" + RESET);
+    e.printStackTrace();
+}
+
+// 15-######################################################### Disbursed Loan ( Yes/ No)
+
+try {
+    long disbursedListClickStart = System.currentTimeMillis();
+
+    // Wait for the "Disbursed List" link to be clickable
+    WebElement disbursedListLink = wait.until(ExpectedConditions.elementToBeClickable(
+        By.xpath("//a[.//span[text()='Disbursed List']]")
+    ));
+    Thread.sleep(5000);
+    // Scroll into view and click using JavaScript
+    js.executeScript("arguments[0].scrollIntoView(true);", disbursedListLink);
+    Thread.sleep(300); // smooth scroll pause
+    js.executeScript("arguments[0].click();", disbursedListLink);
+
+    long disbursedListClickEnd = System.currentTimeMillis();
+    long disbursedListClickDuration = disbursedListClickEnd - disbursedListClickStart;
+
+    System.out.println(GREEN + "✅ 'Disbursed List' clicked successfully!" + RESET);
+    System.out.println("⏱️ Time taken: " + disbursedListClickDuration + " ms");
+
+    if (disbursedListClickDuration <= 3000) {
+        System.out.println(GREEN + "⚡ Disbursed List Click: Fast" + RESET);
+    } else if (disbursedListClickDuration <= 7000) {
+        System.out.println(YELLOW + "⏱️ Disbursed List Click: Medium" + RESET);
+    } else {
+        System.out.println(RED + "🐌 Disbursed List Click: Slow" + RESET);
+    }
+
+} catch (Exception e) {
+    System.out.println(RED + "❌ Failed to click 'Disbursed List'!" + RESET);
+    e.printStackTrace();
+}
+
 
         } catch (Exception e) {
             e.printStackTrace();
