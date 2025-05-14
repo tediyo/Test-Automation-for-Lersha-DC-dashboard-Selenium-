@@ -545,7 +545,7 @@ try {
     Thread.sleep(5000);
     // Scroll into view and click using JavaScript
     js.executeScript("arguments[0].scrollIntoView(true);", disbursedListLink);
-    Thread.sleep(300); // smooth scroll pause
+    Thread.sleep(3000); // smooth scroll pause
     js.executeScript("arguments[0].click();", disbursedListLink);
 
     long disbursedListClickEnd = System.currentTimeMillis();
