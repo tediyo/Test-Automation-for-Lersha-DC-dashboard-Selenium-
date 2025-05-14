@@ -534,18 +534,17 @@ try {
 }
 
 // 15-######################################################### Disbursed Loan ( Yes/ No)
-
 try {
     long disbursedListClickStart = System.currentTimeMillis();
 
-    // Wait for the "Disbursed List" link to be clickable
+    // Wait for link by matching the full href attribute (most reliable)
     WebElement disbursedListLink = wait.until(ExpectedConditions.elementToBeClickable(
-        By.xpath("//a[.//span[text()='Disbursed List']]")
+        By.cssSelector("a[href='/dashboard/farmer/loan-section/disbursed_list']")
     ));
-    Thread.sleep(5000);
-    // Scroll into view and click using JavaScript
-    js.executeScript("arguments[0].scrollIntoView(true);", disbursedListLink);
-    Thread.sleep(3000); // smooth scroll pause
+
+    // Scroll into view and click via JavaScript
+    js.executeScript("arguments[0].scrollIntoView({block: 'center'});", disbursedListLink);
+    Thread.sleep(3000); // optional pause
     js.executeScript("arguments[0].click();", disbursedListLink);
 
     long disbursedListClickEnd = System.currentTimeMillis();
@@ -553,14 +552,6 @@ try {
 
     System.out.println(GREEN + "✅ 'Disbursed List' clicked successfully!" + RESET);
     System.out.println("⏱️ Time taken: " + disbursedListClickDuration + " ms");
-
-    if (disbursedListClickDuration <= 3000) {
-        System.out.println(GREEN + "⚡ Disbursed List Click: Fast" + RESET);
-    } else if (disbursedListClickDuration <= 7000) {
-        System.out.println(YELLOW + "⏱️ Disbursed List Click: Medium" + RESET);
-    } else {
-        System.out.println(RED + "🐌 Disbursed List Click: Slow" + RESET);
-    }
 
 } catch (Exception e) {
     System.out.println(RED + "❌ Failed to click 'Disbursed List'!" + RESET);
