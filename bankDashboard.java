@@ -392,6 +392,80 @@ try {
     e.printStackTrace();
 }
 
+// 12-######################################################### Click Eye Icon Button
+// 12-######################################################### Click Eye Icon Link (Wrapped in <a>)
+long viewBtnClickStart = System.currentTimeMillis();
+
+try {
+    long actionStart = System.currentTimeMillis();
+
+    // Wait for the button to be present and clickable
+    WebElement targetButton = wait.until(ExpectedConditions.elementToBeClickable(
+        By.xpath("/html/body/div[2]/div/main/div/div/div/div/div[2]/div/table/tbody/tr[2]/td[7]/div/a/button")
+    ));
+
+    // Scroll into view using JavaScript
+    js.executeScript("arguments[0].scrollIntoView({block: 'center'});", targetButton);
+    Thread.sleep(500); // wait for smooth scroll
+
+    // Use JS click (more robust than .click())
+    js.executeScript("arguments[0].click();", targetButton);
+
+    long actionEnd = System.currentTimeMillis();
+    long eyeduration = actionEnd - actionStart;
+
+    System.out.println(GREEN + "✅ Target button clicked successfully!" + RESET);
+    System.out.println("⏱️ Time taken: " + eyeduration + " ms");
+
+    if (duration <= 3000) {
+        System.out.println(GREEN + "⚡ Click Action: Fast" + RESET);
+    } else if (eyeduration <= 7000) {
+        System.out.println(YELLOW + "⏱️ Click Action: Medium" + RESET);
+    } else {
+        System.out.println(RED + "🐌 Click Action: Slow" + RESET);
+    }
+
+} catch (Exception e) {
+    System.out.println(RED + "❌ Failed to click the target button!" + RESET);
+    e.printStackTrace();
+}
+
+
+// 13-#########################################################Click Disburse Loan
+long disburseLoanClickStart = System.currentTimeMillis();
+
+try {
+    // Locate button by visible text or part of SVG class
+    WebElement disburseLoanButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+        By.xpath("//button[contains(., 'Disburse Loan')]")
+    ));
+
+    // Scroll and click with JS for reliability
+    js.executeScript("arguments[0].scrollIntoView(true);", disburseLoanButton);
+    Thread.sleep(1000); // smooth scroll
+
+    js.executeScript("arguments[0].click();", disburseLoanButton);
+    Thread.sleep(3000); // wait for action to complete
+
+    long disburseLoanClickEnd = System.currentTimeMillis();
+    long disburseLoanDuration = disburseLoanClickEnd - disburseLoanClickStart;
+
+    System.out.println(GREEN + "12- 'Disburse Loan' button clicked successfully!" + RESET);
+    System.out.println("Time taken to click 'Disburse Loan': " + disburseLoanDuration + " ms");
+
+    if (disburseLoanDuration <= 3000) {
+        System.out.println(GREEN + "⚡ Disburse Loan Action: Fast" + RESET);
+    } else if (disburseLoanDuration <= 7000) {
+        System.out.println(YELLOW + "⏱️ Disburse Loan Action: Medium" + RESET);
+    } else {
+        System.out.println(RED + "🐌 Disburse Loan Action: Slow" + RESET);
+    }
+
+} catch (Exception e) {
+    System.out.println(RED + "12- Failed to click 'Disburse Loan' button!" + RESET);
+    e.printStackTrace();
+}
+
 
         } catch (Exception e) {
             e.printStackTrace();
