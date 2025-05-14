@@ -356,6 +356,42 @@ try {
     e.printStackTrace();
 }
 
+// 11-#########################################################Click Approved List
+long approvedListClickStart = System.currentTimeMillis();
+
+try {
+    // Locate span text and click its parent
+    WebElement approvedListSpan = wait.until(ExpectedConditions.visibilityOfElementLocated(
+        By.xpath("//span[normalize-space(text())='Approved List']")
+    ));
+
+    // Click its parent <a> or <button> using JS
+    WebElement parentElement = approvedListSpan.findElement(By.xpath("./ancestor::a | ./ancestor::button"));
+    js.executeScript("arguments[0].scrollIntoView(true);", parentElement);
+    Thread.sleep(1000);
+
+    js.executeScript("arguments[0].click();", parentElement);
+    Thread.sleep(3000); // wait for page load
+
+    long approvedListClickEnd = System.currentTimeMillis();
+    long approvedListDuration = approvedListClickEnd - approvedListClickStart;
+
+    System.out.println(GREEN + "11- 'Approved List' clicked successfully!" + RESET);
+    System.out.println("Time taken to open 'Approved List': " + approvedListDuration + " ms");
+
+    if (approvedListDuration <= 3000) {
+        System.out.println(GREEN + "⚡ Approved List Load Time: Fast" + RESET);
+    } else if (approvedListDuration <= 7000) {
+        System.out.println(YELLOW + "⏱️ Approved List Load Time: Medium" + RESET);
+    } else {
+        System.out.println(RED + "🐌 Approved List Load Time: Slow" + RESET);
+    }
+
+} catch (Exception e) {
+    System.out.println(RED + "11- Failed to click 'Approved List'!" + RESET);
+    e.printStackTrace();
+}
+
 
         } catch (Exception e) {
             e.printStackTrace();
